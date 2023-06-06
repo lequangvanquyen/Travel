@@ -67,7 +67,7 @@
     .office-name {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 3rem;
     }
 
     .office-name img {
