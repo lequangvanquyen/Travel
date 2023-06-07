@@ -16,41 +16,72 @@
 
 <body>
     <div class="wrapper">
-        <div class="grid wide main">
-            <div class="row hi">
-                <div class="l-6 m-6 c-12 side-images">
-                    <!-- images -->
-                    <img src="../images/Logo .png" alt="">
-                    <div class="text">
-                        <p>Join the community of developers <i>- ludiflex</i></p>
+        <form action="" method="POST" class="form" id="form-1">
+            <div class="grid wide main">
+                <div class="row hi">
+                    <div class="l-6 m-6 c-12 side-images">
+                        <!-- images -->
+                        <img src="../images/Logo .png" alt="">
+                        <div class="text">
+                            <p>Join the community of developers <i>- ludiflex</i></p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="l-6 m-6 c-12 right">
-                    <div class="input-box">
-                        <header>Create account</header>
-                        <div class="input-field">
-                            <input type="text" class="input" id="email" required autocomplete="off">
-                            <label for="email">Email</label>
-                        </div>
+                    <div class="l-6 m-6 c-12 right">
+                        <div class="input-box">
+                            <header>Create account</header>
+                            <div class="input-field form-group">
+                                <input type="text" class="input form-control" name="email" type="text" id="email"
+                                    required autocomplete="off">
+                                <label for="email">Email</label>
+                                <span class="form-message"></span>
+                            </div>
 
-                        <div class="input-field">
-                            <input type="password" class="input" id="password" required>
-                            <label for="password">Password</label>
-                        </div>
+                            <div class="input-field form-group">
+                                <input type="password" class="input form-control" id="password" name="password"
+                                    required>
+                                <label for="password">Password</label>
+                                <span class="form-message"></span>
+                            </div>
+                            
+                            <button class="form-submit">Sign Up</button>
 
-                        <div class="input-field">
-                            <input type="submit" class="submit" value="Sign Up">
-                        </div>
-
-                        <div class="signin">
-                            <span>Already have an account? <a href="../index.html">Log in here</a></span>
+                            <div class="signin">
+                                <span>Already have an account? <a href="../index.html">Log in here</a></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
+    <script src="../js/login.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mong muốn của chúng ta
+            Validator({
+                form: '#form-1',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+                    Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ của bạn'),
+                    Validator.isEmail('#email'),
+                    Validator.minLength('#password', 6),
+                    Validator.isRequired('#password_confirmation'),
+                    Validator.isConfirmed('#password_confirmation', function () {
+                        return document.querySelector('#form-1 #password').value;
+                    }, 'Mật khẩu nhập lại không chính xác')
+                ],
+                onSubmit: function (data) {
+                    // Call API
+                    console.log(data);
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>
