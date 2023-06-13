@@ -96,3 +96,9 @@ header {
 .destinations {
     margin-top: 5%;
 }
+
+@media screen and (max-with:767px) {
+    .destinations {
+    margin-top: 10%;
+    }
+}
